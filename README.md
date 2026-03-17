@@ -1,16 +1,59 @@
-# React + Vite
+# LocalBird 🐦
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+LocalBird is a fully local, mock-Twitter web application built with React and Vite. It allows you to experience a timeline-based social media interface locally, complete with simulated automated 'personas' that interact with the tweets you post!
 
-Currently, two official plugins are available:
+**Live Demo**: [https://ariesyous.github.io/localbird/](https://ariesyous.github.io/localbird/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Premium UI**: Features a sleek dark-mode, glassmorphism design crafted with vanilla CSS.
+- **Local State**: All tweets and interactions are managed locally in the browser's state. No external databases or authentication required.
+- **Simulated Personas**: Post a tweet and watch as distinct personas (like the Crypto Bro, the Doomsday Prepper, and the Cat Lady) reply automatically. Their responses react contextually based on the keywords in your tweet!
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm or yarn
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ariesyous/localbird.git
+   ```
+2. Navigate into the project directory:
+   ```bash
+   cd localbird
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+5. Open your browser and visit `http://localhost:5173`.
+
+## Architecture
+
+- **Frontend Framework**: React 19
+- **Build Tool**: Vite
+- **Styling**: Vanilla CSS (CSS Variables, Flexbox, CSS Grid)
+- **Deployment**: GitHub Pages
+
+## Project Structure
+- `src/components/`: Modular React components for the Feed, Sidebar, RightPanel, and individual Tweets.
+- `src/services/`:`personaService.js` handles the logic for scanning tweet text and generating automated replies from our cast of characters.
+- `src/store/`: `TweetContext.jsx` provides the global state for adding tweets and handling "likes".
+
+## Deployment
+
+The project is configured to deploy easily to GitHub Pages. To deploy a new version:
+```bash
+npm run deploy
+```
+
+## License
+MIT
