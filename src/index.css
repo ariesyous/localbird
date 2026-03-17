@@ -1,0 +1,364 @@
+:root {
+  --bg-color: #0f172a;
+  --panel-bg: rgba(30, 41, 59, 0.7);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent-color: #3b82f6;
+  --accent-hover: #2563eb;
+  --border-color: rgba(255,255,255,0.1);
+  --glass-blur: blur(12px);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  overflow-y: scroll;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.app-container {
+  display: grid;
+  grid-template-columns: 250px minmax(500px, 600px) 300px;
+  gap: 20px;
+  max-width: 1200px;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Base Glassmorphism Panel */
+.glass-panel {
+  background: var(--panel-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+  position: sticky;
+  top: 20px;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.logo-container {
+  font-size: 24px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: var(--text-main);
+  background: linear-gradient(135deg, #60a5fa, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: var(--text-main);
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-item.active {
+  font-weight: 800;
+}
+
+/* Main Feed */
+.main-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header */
+.feed-header {
+  font-size: 20px;
+  font-weight: 800;
+  padding: 0 10px 15px 10px;
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Tweet Box */
+.tweet-box {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.tweet-box-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tweet-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-size: 18px;
+  font-family: inherit;
+  resize: none;
+  min-height: 80px;
+  outline: none;
+}
+
+.tweet-input::placeholder {
+  color: var(--text-muted);
+}
+
+.tweet-box-actions {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--border-color);
+  padding-top: 10px;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Tweet Component */
+.tweet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.tweet-thread {
+  animation: slideFadeIn 0.4s ease-out forwards;
+}
+
+.tweet-card {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  transition: background 0.2s;
+}
+
+.tweet-card:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+}
+
+.tweet-content {
+  flex: 1;
+}
+
+.tweet-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.tweet-name {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.tweet-handle, .tweet-time {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.tweet-text {
+  font-size: 15px;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  white-space: pre-wrap;
+}
+
+.tweet-actions {
+  display: flex;
+  gap: 40px;
+  color: var(--text-muted);
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: color 0.2s;
+  font-size: 14px;
+  background: none;
+  border: none;
+  color: inherit;
+}
+
+.action-btn:hover {
+  color: var(--accent-color);
+}
+
+.action-btn i {
+  font-size: 18px;
+}
+
+.action-like:hover {
+  color: #f43f5e;
+}
+
+/* Replies Section */
+.replies-container {
+  margin-left: 32px;
+  padding-left: 20px;
+  border-left: 2px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.reply-card {
+  padding: 12px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  animation: slideFadeIn 0.3s ease-out forwards;
+}
+
+/* Animations */
+@keyframes slideFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Right Panel */
+.right-panel {
+  position: sticky;
+  top: 20px;
+  height: max-content;
+}
+
+.trending-box, .who-to-follow {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.trending-box h2, .who-to-follow h2 {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.trend-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.trend-category {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.trend-name {
+  font-weight: 700;
+  font-size: 15px;
+  margin: 2px 0;
+}
+
+.trend-tweets {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .app-container {
+    grid-template-columns: 80px 1fr;
+  }
+  .right-panel {
+    display: none;
+  }
+  .nav-item span {
+    display: none;
+  }
+  .logo-container span {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .app-container {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+  .sidebar {
+    display: none;
+  }
+}
